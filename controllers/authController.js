@@ -22,13 +22,13 @@ export const register = async (req, res) => {
 
     if (!password || password?.trim().length < 6) {
       return res
-        .status(500)
+        .status(400)
         .json({ message: 'password must have at least 6 characters' });
     }
 
     const isUserExists = await userModel.findOne({ email });
     if (isUserExists) {
-      return res.status(500).json({
+      return res.status(400).json({
         message: 'user already exists with this email',
       });
     }

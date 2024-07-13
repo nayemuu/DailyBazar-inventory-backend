@@ -18,6 +18,10 @@ const locationSchema = new Schema({
     type: String,
     required: true,
   },
+  slug: {
+    type: String,
+    lowercase: true,
+  },
 });
 
 export const locationModel = mongoose.model('Location', locationSchema);
