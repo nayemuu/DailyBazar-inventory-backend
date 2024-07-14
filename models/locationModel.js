@@ -14,9 +14,8 @@ const locationSchema = new Schema({
     unique: true,
     lowercase: true,
   },
-  logo: {
+  icon: {
     type: String,
-    required: true,
   },
   slug: {
     type: String,

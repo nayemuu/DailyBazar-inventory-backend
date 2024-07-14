@@ -39,6 +39,7 @@ export const register = async (req, res) => {
       name,
       email,
       password: hashedPassword,
+      role: 'admin',
     });
     const JsonWebToken = jwt.sign({ id: newUser._id }, process.env.SIGNATURE, {
       expiresIn: '24h',

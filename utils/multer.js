@@ -35,11 +35,14 @@ export const upload = multer({
   fileFilter: (req, file, cb) => {
     // এখানে file.fieldname দিয়ে check করে নেওয়ার কারণ হচ্ছে upload ব্যবহার করে যতগুলো ফাইল আপলোড করবো সবগুলোই এই object এর সবগুলো statement execute করবে
 
-    if (file.fieldname === 'logo' || file.fieldname === 'thumbnail') {
+    if (
+      file.fieldname === 'icon' ||
+      file.fieldname === 'logo' ||
+      file.fieldname === 'thumbnail'
+    ) {
       // eslint-disable-next-line prettier/prettier
       // console.log("file.mimetype = ", file.mimetype );
       if (
-        file.mimetype === 'image/png' ||
         file.mimetype === 'image/png' ||
         file.mimetype === 'image/jpeg' ||
         file.mimetype === 'image/svg+xml' ||

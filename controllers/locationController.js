@@ -5,6 +5,7 @@ import slugify from 'slugify';
 import { uploadOnCloudinary } from '../utils/cloudinary.js';
 import { imageUploadOnDB } from '../utils/image.js';
 import { locationModel } from '../models/locationModel.js';
+import { replaceMongoIdInArray } from '../utils/mongoDB.js';
 
 export const create = async (req, res) => {
   try {
@@ -27,13 +28,13 @@ export const create = async (req, res) => {
 
     res.status(201).json({ message: 'Location created successfully' });
 
-    if (req.file) {
+    if (req?.file?.path) {
       const logo = await uploadOnCloudinary(req.file.path);
       imageUploadOnDB({ ...logo });
       locationModel.create({
         name,
         slug: slugify(name),
-        logo: logo.secure_url,
+        icon: logo.secure_url,
       });
     } else {
       locationModel.create({ name, slug: slugify(name.trim()) });
@@ -41,10 +42,26 @@ export const create = async (req, res) => {
   } catch (error) {
     console.log(error);
   } finally {
-    fs.unlink(req.file.path, (error) => {
-      if (error) {
-        console.log('uploadOnCloudinary, fsmodule error = ', error);
-      }
-    });
+    if (req?.file?.path) {
+      fs.unlink(req.file.path, (error) => {
+        if (error) {
+          console.log('uploadOnCloudinary, fsmodule error = ', error);
+        }
+      });
+    }
+  }
+};
+
+export const list = async (req, res) => {
+  try {
+    const dataFromMongodb = await locationModel
+      .find({})
+      .select(['name', 'icon'])
+      .lean();
+
+    res.status(200).json(replaceMongoIdInArray(dataFromMongodb));
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err.message);
   }
 };

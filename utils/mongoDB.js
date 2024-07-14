@@ -1,4 +1,4 @@
-const replaceMongoIdInArray = (array) => {
+export const replaceMongoIdInArray = (array) => {
   const mappedArray = array
     .map((item) => ({
       id: item._id.toString(),
@@ -13,5 +13,3 @@ const replaceMongoIdInObject = (obj) => {
   const { _id, ...updatedObj } = { ...obj, id: obj._id.toString() };
   return updatedObj;
 };
-
-module.exports = { replaceMongoIdInArray, replaceMongoIdInObject };
