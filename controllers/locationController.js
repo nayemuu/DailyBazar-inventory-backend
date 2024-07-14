@@ -6,6 +6,7 @@ import { uploadOnCloudinary } from '../utils/cloudinary.js';
 import { imageUploadOnDB } from '../utils/image.js';
 import { locationModel } from '../models/locationModel.js';
 import { replaceMongoIdInArray } from '../utils/mongoDB.js';
+import { connectToDatabase } from '../connectToDatabase.js';
 
 export const create = async (req, res) => {
   try {
@@ -54,6 +55,7 @@ export const create = async (req, res) => {
 
 export const list = async (req, res) => {
   try {
+    await connectToDatabase();
     const dataFromMongodb = await locationModel
       .find({})
       .select(['name', 'icon'])
