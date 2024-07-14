@@ -4,7 +4,7 @@ import { create, list } from '../controllers/locationController.js';
 import { upload } from '../utils/multer.js';
 
 const Route = express.Router();
-Route.get('/', list);
+Route.get('/', checkLogin, list);
 Route.post('/', checkLogin, upload.single('icon'), create);
 
 export default Route;

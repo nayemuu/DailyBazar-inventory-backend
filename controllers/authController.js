@@ -7,6 +7,7 @@ dotenv.config();
 export const register = async (req, res) => {
   // console.log('req.body = ', req.body);
   try {
+    await connectToDatabase();
     const { name, password, email } = req.body; // সব সময় req.body থেকে object destructuring এর মাধ্যমে প্রয়োজনীয় property destructure করে ব্যবহার করব
     // যাতে পরবর্তীতে কি কি properties ব্যবহার করতেছো, তা জানার জন্য front-end ঘাটাঘাটি না করতে হয়
     // express module টি দেখেই যাতে বুঝতে পারি যে কি কি properties নিয়ে কাজ করতেছি
@@ -63,6 +64,7 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
+    await connectToDatabase();
     const { email, password } = req.body;
     const userFound = await userModel.findOne({ email });
     // console.log('email = ', email);
