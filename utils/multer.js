@@ -51,7 +51,7 @@ export const upload = multer({
 
   fileFilter: (req, file, cb) => {
     // এখানে file.fieldname দিয়ে check করে নেওয়ার কারণ হচ্ছে upload ব্যবহার করে যতগুলো ফাইল আপলোড করবো সবগুলোই এই object এর সবগুলো statement execute করবে
-
+    console.log('inside fileFilter');
     if (
       file.fieldname === 'icon' ||
       file.fieldname === 'logo' ||
