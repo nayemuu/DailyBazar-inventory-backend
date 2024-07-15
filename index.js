@@ -15,6 +15,7 @@ const app = express();
 const port = process.env.PORT;
 
 // middlewares
+app.use(express.static(`${__dirname}/public/`));
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
