@@ -3,11 +3,13 @@ import dotenv from 'dotenv';
 import express from 'express';
 import morgan from 'morgan';
 import fs from 'fs';
+import { fileURLToPath } from 'url';
 import path from 'path';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import { connectToDatabase } from './connectToDatabase.js';
 import authRoutes from './routes/authRoutes.js';
 import locationRoutes from './routes/locationRoutes.js';
-const __dirname = path.resolve();
+
 dotenv.config();
 const app = express();
 const port = process.env.PORT;
@@ -18,7 +20,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('Welcome to root Server = ', __dirname);
+  res.json({ root: __dirname });
 });
 
 // router middleware
