@@ -44,13 +44,13 @@ export const create = async (req, res) => {
   } catch (error) {
     console.log(error);
   } finally {
-    if (req?.file?.path) {
-      fs.unlink(req.file.path, (error) => {
-        if (error) {
-          console.log("uploadOnCloudinary, fsmodule error = ", error);
-        }
-      });
-    }
+    // if (req?.file?.path) {
+    //   fs.unlink(req.file.path, (error) => {
+    //     if (error) {
+    //       console.log("uploadOnCloudinary, fsmodule error = ", error);
+    //     }
+    //   });
+    // }
   }
 };
 
