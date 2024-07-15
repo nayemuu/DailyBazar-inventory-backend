@@ -23,7 +23,8 @@ const storage = multer.diskStorage({
   // },
 
   destination: (req, file, cb) => {
-    // console.log('__dirname = ', __dirname);
+    console.log('__dirname = ', __dirname);
+    console.log('UPLOADS_FOLDER = ', UPLOADS_FOLDER);
     // if (!fs.existsSync(UPLOADS_FOLDER)) {
     //   fs.mkdirSync(UPLOADS_FOLDER, { recursive: true });
     // }
@@ -57,7 +58,7 @@ export const upload = multer({
       file.fieldname === 'thumbnail'
     ) {
       // eslint-disable-next-line prettier/prettier
-      // console.log("file.mimetype = ", file.mimetype );
+      console.log('file.mimetype = ', file.mimetype);
       if (
         file.mimetype === 'image/png' ||
         file.mimetype === 'image/jpeg' ||
