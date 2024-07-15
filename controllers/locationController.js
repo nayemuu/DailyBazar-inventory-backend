@@ -30,17 +30,17 @@ export const create = async (req, res) => {
 
     res.status(201).json({ message: 'Location created successfully' });
 
-    // if (req?.file?.path) {
-    //   const logo = await uploadOnCloudinary(req.file.path);
-    //   imageUploadOnDB({ ...logo });
-    //   locationModel.create({
-    //     name,
-    //     slug: slugify(name),
-    //     icon: logo.secure_url,
-    //   });
-    // } else {
-    //   locationModel.create({ name, slug: slugify(name.trim()) });
-    // }
+    if (req?.file?.path) {
+      const logo = await uploadOnCloudinary(req.file.path);
+      imageUploadOnDB({ ...logo });
+      locationModel.create({
+        name,
+        slug: slugify(name),
+        icon: logo.secure_url,
+      });
+    } else {
+      locationModel.create({ name, slug: slugify(name.trim()) });
+    }
   } catch (error) {
     console.log(error);
   } finally {
