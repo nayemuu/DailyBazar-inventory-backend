@@ -6,7 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // File upload folder
 // const UPLOADS_FOLDER = '/public/'; //if you don't use `__dirname`
-const UPLOADS_FOLDER = './tmp';
+const UPLOADS_FOLDER = './public/';
 // যে fileটি upload variable কে import করে ব্যবহার করবে অর্থাৎ যেই file এ run হবে সেই fileটি যে folder এ অবস্থিত, সেই folder এ upload folder তৈরি হবে
 
 // define the storage
@@ -23,11 +23,10 @@ const storage = multer.diskStorage({
   // },
 
   destination: (req, file, cb) => {
-    console.log('__dirname = ', __dirname);
-    console.log('UPLOADS_FOLDER = ', UPLOADS_FOLDER);
-    // if (!fs.existsSync(UPLOADS_FOLDER)) {
-    //   fs.mkdirSync(UPLOADS_FOLDER, { recursive: true });
-    // }
+    // console.log('__dirname = ', __dirname);
+    if (!fs.existsSync(UPLOADS_FOLDER)) {
+      fs.mkdirSync(UPLOADS_FOLDER, { recursive: true });
+    }
     cb(null, UPLOADS_FOLDER);
   },
   filename: (req, file, cb) => {
@@ -51,14 +50,14 @@ export const upload = multer({
 
   fileFilter: (req, file, cb) => {
     // এখানে file.fieldname দিয়ে check করে নেওয়ার কারণ হচ্ছে upload ব্যবহার করে যতগুলো ফাইল আপলোড করবো সবগুলোই এই object এর সবগুলো statement execute করবে
-    console.log('inside fileFilter');
+
     if (
       file.fieldname === 'icon' ||
       file.fieldname === 'logo' ||
       file.fieldname === 'thumbnail'
     ) {
       // eslint-disable-next-line prettier/prettier
-      console.log('file.mimetype = ', file.mimetype);
+      // console.log("file.mimetype = ", file.mimetype );
       if (
         file.mimetype === 'image/png' ||
         file.mimetype === 'image/jpeg' ||
