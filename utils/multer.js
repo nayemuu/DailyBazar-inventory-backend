@@ -27,7 +27,7 @@ const storage = multer.diskStorage({
     // if (!fs.existsSync(UPLOADS_FOLDER)) {
     //   fs.mkdirSync(UPLOADS_FOLDER, { recursive: true });
     // }
-    cb(null, './tmp');
+    cb(null, './tmp/');
   },
   filename: (req, file, cb) => {
     const fileExt = path.extname(file.originalname); // path.extname() ব্যবহার প্রয়োজন আমাদেরকে nodejs এর core একটি module, path module import করতে হবে
