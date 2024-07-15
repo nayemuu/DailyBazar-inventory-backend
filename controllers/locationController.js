@@ -31,6 +31,7 @@ export const create = async (req, res) => {
     res.status(201).json({ message: 'Location created successfully' });
 
     if (req?.file?.path) {
+      console.log('logo = ', logo);
       const logo = await uploadOnCloudinary(req.file.path);
       imageUploadOnDB({ ...logo });
       locationModel.create({
