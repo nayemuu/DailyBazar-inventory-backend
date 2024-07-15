@@ -7,6 +7,7 @@ import path from 'path';
 import { connectToDatabase } from './connectToDatabase.js';
 import authRoutes from './routes/authRoutes.js';
 import locationRoutes from './routes/locationRoutes.js';
+const __dirname = path.resolve();
 dotenv.config();
 const app = express();
 const port = process.env.PORT;
