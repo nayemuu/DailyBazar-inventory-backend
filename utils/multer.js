@@ -10,8 +10,8 @@ const UPLOADS_FOLDER = "/public/";
 // define the storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    if (!fs.existsSync(__dirname + UPLOADS_FOLDER)) {
-      fs.mkdirSync(__dirname + UPLOADS_FOLDER, { recursive: true });
+    if (!fs.existsSync("." + __dirname + UPLOADS_FOLDER)) {
+      fs.mkdirSync("." + __dirname + UPLOADS_FOLDER, { recursive: true });
     }
     cb(null, UPLOADS_FOLDER);
   },
