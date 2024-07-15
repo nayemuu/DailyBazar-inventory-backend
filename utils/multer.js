@@ -24,9 +24,9 @@ const storage = multer.diskStorage({
 
   destination: (req, file, cb) => {
     // console.log('__dirname = ', __dirname);
-    if (!fs.existsSync(UPLOADS_FOLDER)) {
-      fs.mkdirSync(UPLOADS_FOLDER, { recursive: true });
-    }
+    // if (!fs.existsSync(UPLOADS_FOLDER)) {
+    //   fs.mkdirSync(UPLOADS_FOLDER, { recursive: true });
+    // }
     cb(null, UPLOADS_FOLDER);
   },
   filename: (req, file, cb) => {
