@@ -2,11 +2,12 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import morgan from "morgan";
+import fs from "fs";
+import path from "path";
 import { connectToDatabase } from "./connectToDatabase.js";
 import authRoutes from "./routes/authRoutes.js";
 import locationRoutes from "./routes/locationRoutes.js";
 dotenv.config();
-
 const app = express();
 const port = process.env.PORT;
 
@@ -16,7 +17,8 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Welcome to root Server");
+  // res.send("Welcome to root Server");
+  res.send("process.cwd() = ", process.cwd()); //for vercel roo folder testing
 });
 
 // router middleware
