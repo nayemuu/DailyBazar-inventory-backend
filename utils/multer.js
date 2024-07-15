@@ -2,7 +2,7 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 // File upload folder
-const UPLOADS_FOLDER = './public/images/';
+const UPLOADS_FOLDER = './public/';
 // যে fileটি upload variable কে import করে ব্যবহার করবে অর্থাৎ যেই file এ run হবে সেই fileটি যে folder এ অবস্থিত, সেই folder এ upload folder তৈরি হবে
 
 // define the storage
