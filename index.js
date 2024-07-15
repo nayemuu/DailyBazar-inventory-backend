@@ -17,8 +17,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  // res.send("Welcome to root Server");
-  res.send("process.cwd() = ", process.cwd()); //for vercel roo folder testing
+  res.send("Welcome to root Server");
 });
 
 // router middleware
