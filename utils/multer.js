@@ -5,7 +5,7 @@ const __dirname = path.resolve();
 
 // File upload folder
 // const UPLOADS_FOLDER = "/public/"; //if you don't use `__dirname`
-const UPLOADS_FOLDER = "./public/images/";
+const UPLOADS_FOLDER = "./public/";
 // যে fileটি upload variable কে import করে ব্যবহার করবে অর্থাৎ যেই file এ run হবে সেই fileটি যে folder এ অবস্থিত, সেই folder এ upload folder তৈরি হবে
 
 // define the storage
