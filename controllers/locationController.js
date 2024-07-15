@@ -11,7 +11,7 @@ import { connectToDatabase } from "../connectToDatabase.js";
 export const create = async (req, res) => {
   try {
     await connectToDatabase();
-    // console.log('req.file = ', req.file);
+    // console.log("req.file = ", req.file);
     const { name } = req.body;
     // console.log('req.body = ', req.body);
 
@@ -44,13 +44,13 @@ export const create = async (req, res) => {
   } catch (error) {
     console.log(error);
   } finally {
-    // if (req?.file?.path) {
-    //   fs.unlink(req.file.path, (error) => {
-    //     if (error) {
-    //       console.log("uploadOnCloudinary, fsmodule error = ", error);
-    //     }
-    //   });
-    // }
+    if (req?.file?.path) {
+      fs.unlink(req.file.path, (error) => {
+        if (error) {
+          console.log("uploadOnCloudinary, fsmodule error = ", error);
+        }
+      });
+    }
   }
 };
 

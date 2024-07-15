@@ -9,19 +9,19 @@ const UPLOADS_FOLDER = "./public/";
 
 // define the storage
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    if (!fs.existsSync(__dirname + UPLOADS_FOLDER)) {
-      fs.mkdirSync(__dirname + UPLOADS_FOLDER, { recursive: true });
-    }
-    cb(null, __dirname + UPLOADS_FOLDER);
-  },
-
   // destination: (req, file, cb) => {
-  //   if (!fs.existsSync(UPLOADS_FOLDER)) {
-  //     fs.mkdirSync(UPLOADS_FOLDER, { recursive: true });
+  //   if (!fs.existsSync(__dirname + UPLOADS_FOLDER)) {
+  //     fs.mkdirSync(__dirname + UPLOADS_FOLDER, { recursive: true });
   //   }
-  //   cb(null, UPLOADS_FOLDER);
+  //   cb(null, __dirname + UPLOADS_FOLDER);
   // },
+
+  destination: (req, file, cb) => {
+    if (!fs.existsSync(UPLOADS_FOLDER)) {
+      fs.mkdirSync(UPLOADS_FOLDER, { recursive: true });
+    }
+    cb(null, UPLOADS_FOLDER);
+  },
   filename: (req, file, cb) => {
     const fileExt = path.extname(file.originalname); // path.extname() ব্যবহার প্রয়োজন আমাদেরকে nodejs এর core একটি module, path module import করতে হবে
     const filename = `${file.originalname
