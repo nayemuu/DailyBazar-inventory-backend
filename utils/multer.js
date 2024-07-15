@@ -12,6 +12,8 @@ const UPLOADS_FOLDER = "/public/"; //if you don't use `__dirname`
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     console.log("checking");
+    console.log("__dirname = ", __dirname);
+    console.log("__dirname + UPLOADS_FOLDER = ", __dirname + UPLOADS_FOLDER);
     if (!fs.existsSync(__dirname + UPLOADS_FOLDER)) {
       console.log("inside condition");
       fs.mkdirSync(__dirname + UPLOADS_FOLDER, { recursive: true });
