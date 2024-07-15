@@ -4,29 +4,29 @@ import fs from "fs";
 const __dirname = path.resolve();
 
 // File upload folder
-const UPLOADS_FOLDER = "/public/"; //if you don't use `__dirname`
-// const UPLOADS_FOLDER = "./public/images/";
+// const UPLOADS_FOLDER = "/public/"; //if you don't use `__dirname`
+const UPLOADS_FOLDER = "./public/images/";
 // যে fileটি upload variable কে import করে ব্যবহার করবে অর্থাৎ যেই file এ run হবে সেই fileটি যে folder এ অবস্থিত, সেই folder এ upload folder তৈরি হবে
 
 // define the storage
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    console.log("checking");
-    console.log("__dirname = ", __dirname);
-    console.log("__dirname + UPLOADS_FOLDER = ", __dirname + UPLOADS_FOLDER);
-    if (!fs.existsSync(__dirname + UPLOADS_FOLDER)) {
-      console.log("inside condition");
-      fs.mkdirSync(__dirname + UPLOADS_FOLDER, { recursive: true });
-    }
-    cb(null, __dirname + UPLOADS_FOLDER);
-  },
-
   // destination: (req, file, cb) => {
-  //   if (!fs.existsSync(UPLOADS_FOLDER)) {
-  //     fs.mkdirSync(UPLOADS_FOLDER, { recursive: true });
+  //   console.log("checking");
+  //   console.log("__dirname = ", __dirname);
+  //   console.log("__dirname + UPLOADS_FOLDER = ", __dirname + UPLOADS_FOLDER);
+  //   if (!fs.existsSync(__dirname + UPLOADS_FOLDER)) {
+  //     console.log("inside condition");
+  //     fs.mkdirSync(__dirname + UPLOADS_FOLDER, { recursive: true });
   //   }
-  //   cb(null, UPLOADS_FOLDER);
+  //   cb(null, __dirname + UPLOADS_FOLDER);
   // },
+
+  destination: (req, file, cb) => {
+    if (!fs.existsSync(UPLOADS_FOLDER)) {
+      fs.mkdirSync(UPLOADS_FOLDER, { recursive: true });
+    }
+    cb(null, UPLOADS_FOLDER);
+  },
   filename: (req, file, cb) => {
     const fileExt = path.extname(file.originalname); // path.extname() ব্যবহার প্রয়োজন আমাদেরকে nodejs এর core একটি module, path module import করতে হবে
     const filename = `${file.originalname
